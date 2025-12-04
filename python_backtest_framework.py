@@ -16,7 +16,7 @@ from year_calculate import (
 
 stocks_choice = 'SH00300'
 # 1. Read Amihud feather file
-df_wide = pd.read_feather(r"D:\GF实习\单因子框架构建\agru_dailyquote.feather")
+df_wide = pd.read_feather(r"agru_dailyquote.feather")
 
 # date type process and convert
 df_wide.index.name = 'trade_date'
@@ -42,8 +42,8 @@ df = df[(df['trade_date'] >= start_date) & (df['trade_date'] <= end_date)]
 #print(df)
 
 # 2. Incrementally extract daily stock price data via Tinysoft
-price_save_path = r"D:\GF实习\回测相关代码(单因子)\数据提取csv\all_stock_daily_final_1.csv"
-hs300_save_path = r"D:\GF实习\回测相关代码(单因子)\数据提取csv\hs300_index_daily_final_1.csv"
+price_save_path = r"all_stock_daily_final_1.csv"
+hs300_save_path = r"hs300_index_daily_final_1.csv"
 
 price = update_price_data(date_start, date_end, price_save_path)
 hs300_df = update_hs300_data(date_start, date_end, hs300_save_path,"SH000300")
@@ -341,7 +341,7 @@ print(rankic_df.head())
 print(summary_df)
 
 
-output_path = r"D:\GF实习\单因子框架构建\backtest_final_2020_沪深股_新amihud_1.xlsx"
+output_path = r"backtest_final_2020_shsz_amihud_1.xlsx"
 combined_nv_df = combined_nv_df.rename(columns={
     'holding_date':'Date',
     'HS300': 'HS 300',
@@ -393,3 +393,4 @@ with pd.ExcelWriter(output_path, engine='openpyxl') as writer:
     # 8. Q1 turnover per rebalance
     q1_turnover_df.to_excel(writer, sheet_name='Q1 turnover_rate', index=False)
 print("All backtest results have been successfully written to Excel, including the daily Q1 long portfolio rebalance table.")
+
