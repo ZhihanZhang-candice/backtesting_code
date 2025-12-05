@@ -4,7 +4,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from scipy.stats import spearmanr
 from data_loader import update_price_data, update_hs300_data, get_st_status,get_ipo_info,get_index_stock
-from year_calculate import (
+from calculate_yearly_metrics import (
     calculate_netvalue,
     calculate_return,
     calculate_annualreturn,
@@ -393,4 +393,5 @@ with pd.ExcelWriter(output_path, engine='openpyxl') as writer:
     # 8. Q1 turnover per rebalance
     q1_turnover_df.to_excel(writer, sheet_name='Q1 turnover_rate', index=False)
 print("All backtest results have been successfully written to Excel, including the daily Q1 long portfolio rebalance table.")
+
 
